@@ -1,71 +1,68 @@
-let userScore=0;
-let compScore=0;
+let boxes = document.querySelectorAll(".box");
+let resetBtn = document.querySelector("#reset-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
+msgContainer.classList.remove("hide");
 
-const choices=document.querySelectorAll(".choice");
-const msg = document.querySelector("#msg");
+let currentPlayer = true; // true for "o", false for "x"
+const winPatterns = [
+    [0,1,2], [0,3,6], [0,4,8],
+    [1,4,7], [2,5,8], [2,4,6],
+    [3,4,5], [6,7,8]
+];
 
-const userScorePara=document.querySelector("#user-score");
-const compScorePara=document.querySelector("#comp-score");
-
-const genCompchoice=()=>{
-//rock, paper, scissors
-const options=["rock", "paper", "scissors"];
-const randIdx=Math.floor(Math.random()*3);
-return options[randIdx];
+const resetGame = () => {
+    currentPlayer = true;
+    enableBoxes();
+    msgContainer.classList.add("hide");
+    msg.innerText = "";
 };
 
-const drawGame=()=>{
-msg.innerText=("Game was draw.Play again.");
-msg.style.backgroundColor="#081b31";
-};
-
-const showWinner=(userWin, userChoice, compChoice)=>{
-if(userWin){
-userScore=userScore+1;
-userScorePara.innerText = userScore;
-
-    console.log("You Win!");
-    msg.innerText=`("You Win!") Your ${userChoice} beats ${compChoice}`;
-    msg.style.backgroundColor="green";
-}
-else{
-    compScore++;
-  compScorePara.innerText = compScore;
-    console.log("You lose");
-    msg.innerText=`("You lose.")  ${compChoice} beats Your ${userChoice}`;
-    msg.style.backgroundColor="red";
-
-
-}
-};
-const playGame=(userChoice)=>{
-//generate computer choice
-const compChoice= genCompchoice();
-
-
-if(userChoice === compChoice){
-    drawGame();
-}
-else{
-    let userWin=true;
-    if(userChoice==="rock"){
-//scissors,paper
-userWin = compChoice === "paper" ? false:true;
-    }
-    else if(userChoice==="paper"){
-        //rock, scissors
-        userWin = compChoice === "scissors" ? false:true;
-    }
-    else{
-        //paper rock
-        userWin = compChoice === "rock" ? false:true;
-    }
-    showWinner(userWin,userChoice,compChoice);
-}
-};
-choices.forEach((choice)=>{
-    choice.addEventListener("click",()=>{
-        const userChoice=choice.getAttribute("id");
-    playGame(userChoice);
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        console.log("Box is clicked");
+        if (box.innerText === "") {
+            box.innerText = currentPlayer ? "o" : "x";
+            currentPlayer = !currentPlayer;
+            box.disabled = true;
+            checkWinner();
+        }
     });
 });
+
+const disableBoxes = () => {
+    boxes.forEach(box => {
+        box.disabled = true;
+    });
+};
+
+const enableBoxes = () => {
+    boxes.forEach(box => {
+        box.disabled = false;
+        box.innerText = "";
+    });
+};
+
+const showWinner = (winner) => {
+    msg.innerText = `Congratulations, winner is ${winner}`;
+    msgContainer.classList.remove("hide");
+    disableBoxes();
+};
+
+const checkWinner = () => {
+    for (let pattern of winPatterns) {
+        let pos1Val = boxes[pattern[0]].innerText;
+        let pos2Val = boxes[pattern[1]].innerText;
+        let pos3Val = boxes[pattern[2]].innerText;
+        if (pos1Val !== "" && pos1Val === pos2Val && pos2Val === pos3Val) {
+            console.log("Winner", pos1Val);
+            showWinner(pos1Val);
+            return;
+        }
+    }
+    // Check for draw condition if all boxes are filled
+    if ([...boxes].every(box => box.innerText !== "")) {
+        msg.innerText = "It's a draw!";
+        msgContainer.classList.remove("hide");
+    }
+};

@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Rock Paper Scissors</h1>
-    <div class="choices">
-        <div class="choice" id="rock">
-            <img src="rock.png">
-        </div>
-        <div class="choice" id="paper">
-            <img src="paper.png">
-        </div><div class="choice" id="scissors">
-            <img src="scissors.png">
-        </div>
+    <div class="msg-container hide">
+        <p id="msg">Winner</p>
+        <button id="newbtn">New Game</button>
     </div>
-    <div class="score-board">
-        <div class="score">
-            <p id="user-score">0</p>
-            <p>User</p>
+    <main>
+        <h1>Tic Tac Toe</h1> 
+        <div class="container">
+        <div class="game">
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
         </div>
-        <div class="score">
-            <p id="comp-score">0</p>
-            <p>Computer</p>
         </div>
-    </div>
-    <div class="msg-container">
-        <p id="msg">Play you move</p>
-    </div> 
-<script src="app.js" ></script>   
+        <button id="reset-btn">Reset Game</button>
+    </main>
+   <script src="app.js"></script>
 </body>
 </html>
