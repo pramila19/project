@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <script
+      src="https://kit.fontawesome.com/8ad8ec53a6.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="icon" href="./Images/Windows_Calculator_icon.png" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topBar">
+        <p>Calculator</p>
+        <div class="icons">
+          <i class="far fa-window-minimize"></i>
+          <i class="far fa-window-maximize"></i>
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      
+        <div class="secondaryBar">
+          <h3>STANDARD</h3>
+          <h1>History</h1>
+        </div>
+        <input id ="sub-input" value = ""/>
+        <input id="input-group" value="0" />
+
+        <div class="modes">
+          <p class="de-active">MC</p>
+          <p class="de-active">MR</p>
+          <p class="active">M+</p>
+          <p class="active">M-</p>
+          <p class="active">M$</p>
+        </div>
+
+        <div class="topOperations">
+          <button id="id-name" value="%">%</button>
+          <button value="CE">CE</button>
+          <button value="C">C</button>
+          <button class="fas fa-backspace" value="xx"></button>
+        </div>
+        <div class="numbersAndBasicOperations">
+          <button class="op" value="1/X">1/x</button>
+          <button class="op" value="x2">X<sup>2</sup></button>
+          <button class="op" value="rootx">&#8730 X</button>
+          <button class="op" value="/">/</button>
+
+          <button value="7">7</button>
+          <button value="8">8</button>
+          <button value="9">9</button>
+          <button class="op" value="*">*</button>
+          <button value="4">4</button>
+          <button value="5">5</button>
+          <button value="6">6</button>
+          <button class="op" value="-">-</button>
+
+          <button value="1">1</button>
+          <button value="2">2</button>
+          <button value="3">3</button>
+          <button class="op" value="+">+</button>
+
+          <button value="+/-">+/-</button>
+          <button value="0">0</button>
+          <button value=".">.</button>
+          <button class="ans" value="=">=</button>
+        </div>
+      </div>
+      
+    <script src="javascript.js"></script>
+  </body>
+</html>
